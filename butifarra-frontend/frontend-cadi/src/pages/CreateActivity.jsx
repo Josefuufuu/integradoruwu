@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import Sidebar from '../components/layout/Sidebar.jsx';
+import AppLayout from '../components/layout/AppLayout.jsx';
 
 export default function CreateActivity() {
   const initialFormState = {
@@ -33,18 +33,16 @@ export default function CreateActivity() {
   };
 
   return (
-    <div className="app-layout">
-      <Sidebar />
-      <main className="main-content">
-        <div className="page-container" style={{ margin: 0, maxWidth: '100%', padding: 0 }}>
-          <header className="page-header">
-            <h1>Crear nueva actividad</h1>
-            <p>Completa los detalles de la nueva actividad CADI</p>
-          </header>
-          <div className="create-activity-layout">
-            <div className="form-column">
-              <div className="form-card">
-                <form id="create-activity-form" ref={formRef} className="form-grid">
+    <AppLayout>
+      <div className="page-container" style={{ margin: 0, maxWidth: '100%', padding: 0 }}>
+        <header className="page-header">
+          <h1>Crear nueva actividad</h1>
+          <p>Completa los detalles de la nueva actividad CADI</p>
+        </header>
+        <div className="create-activity-layout">
+          <div className="form-column">
+            <div className="form-card">
+              <form id="create-activity-form" ref={formRef} className="form-grid">
                   
                   <div className="form-field">
                     <label htmlFor="titulo">Título de la actividad</label>
@@ -97,36 +95,35 @@ export default function CreateActivity() {
                     <button type="button" className="btn btn-secondary" onClick={handleReset}>Limpiar</button>
                     <button type="submit" className="btn btn-primary">Crear actividad</button>
                   </div>
-                </form>
-              </div>
+              </form>
             </div>
-            <div className="preview-column">
-              <div className="activity-preview-card">
-                <div className="preview-header">Vista Previa</div>
-                <div className="preview-content">
-                  <div className="preview-image-container">
-                    {imagePreview ? (
-                      <img src={imagePreview} alt="Vista previa" className="preview-image" />
-                    ) : (
-                      <div className="preview-image-placeholder"><span>📷</span></div>
-                    )}
-                  </div>
-                  <h3 className="preview-title">{formData.titulo || '(Título)'}</h3>
-                  <div className="preview-tags">
-                    {formData.tipo && <span className="preview-tag">{formData.tipo}</span>}
-                  </div>
-                  <ul className="preview-details">
-                    <li>📍 {formData.lugar || '(Lugar)'}</li>
-                    <li>🗓️ {formData.fecha || '(Fecha)'}</li>
-                    <li>⏰ {formData.hora_inicio || '--:--'} - {formData.hora_fin || '--:--'}</li>
-                  </ul>
-                  {formData.descripcion && <p className="preview-description">{formData.descripcion}</p>}
+          </div>
+          <div className="preview-column">
+            <div className="activity-preview-card">
+              <div className="preview-header">Vista Previa</div>
+              <div className="preview-content">
+                <div className="preview-image-container">
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Vista previa" className="preview-image" />
+                  ) : (
+                    <div className="preview-image-placeholder"><span>📷</span></div>
+                  )}
                 </div>
+                <h3 className="preview-title">{formData.titulo || '(Título)'}</h3>
+                <div className="preview-tags">
+                  {formData.tipo && <span className="preview-tag">{formData.tipo}</span>}
+                </div>
+                <ul className="preview-details">
+                  <li>📍 {formData.lugar || '(Lugar)'}</li>
+                  <li>🗓️ {formData.fecha || '(Fecha)'}</li>
+                  <li>⏰ {formData.hora_inicio || '--:--'} - {formData.hora_fin || '--:--'}</li>
+                </ul>
+                {formData.descripcion && <p className="preview-description">{formData.descripcion}</p>}
               </div>
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </AppLayout>
   );
 }

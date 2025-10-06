@@ -1,7 +1,7 @@
 // src/pages/HomeBeneficiary.jsx
 import PropTypes from "prop-types";
 
-import AppLayout from "../components/Layout/AppLayout.jsx";
+import AppLayout from "../components/layout/AppLayout.jsx";
 import Button from "../components/ui/Button.jsx";
 import StatCard from "../components/ui/StatCard.jsx";
 import ActivityCard from "../components/ActivityCard.jsx";
