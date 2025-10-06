@@ -62,21 +62,21 @@ export default function App() {
       <Routes>
         {/* Rutas de beneficiario */}
         <Route path="/" element={<Navigate to="/inicio" replace />} />
-        <Route path="/inicio" element={(<PrivateRoute><HomeBeneficiary userName="Pablo" /></PrivateRoute>)} />
-        <Route path="/HomeBeneficiary" element={(<PrivateRoute><HomeBeneficiary userName="Pablo" /></PrivateRoute>)} />
-        <Route path="/gestion-cadi" element={(<PrivateRoute><GestionCadiPage /></PrivateRoute>)} />
-        <Route path="/torneos" element={(<PrivateRoute><TorneosPage /></PrivateRoute>)} />
-        <Route path="/psu" element={(<PrivateRoute><PsuVoluntariadosPage /></PrivateRoute>)} />
-        <Route path="/citas" element={(<PrivateRoute><CitasPsicologicasPage /></PrivateRoute>)} />
-        <Route path="/reportes" element={(<PrivateRoute><ReportesPage /></PrivateRoute>)} />
+        <Route path="/inicio" element={(<HomeBeneficiary userName="Pablo" />)} />
+        <Route path="/HomeBeneficiary" element={(<HomeBeneficiary userName="Pablo" />)} />
+        <Route path="/gestion-cadi" element={(<GestionCadiPage />)} />
+        <Route path="/torneos" element={(<TorneosPage />)} />
+        <Route path="/psu" element={(<PsuVoluntariadosPage />)} />
+        <Route path="/citas" element={(<CitasPsicologicasPage />)} />
+        <Route path="/reportes" element={(<ReportesPage />)} />
 
         {/* Rutas de administrador */}
         <Route path="/admin/reports" element={<AdminReport />} />
-        <Route path="/admin/home" element={(<PrivateRoute><AdminHomePage /></PrivateRoute>)} />
-        <Route path="/test-rating" element={(<PrivateRoute><TestRatingPage /></PrivateRoute>)} />
-        <Route path="/notificaciones" element={(<PrivateRoute><NotificationsPage /></PrivateRoute>)} />
-        <Route path="/actividades/crear" element={(<PrivateRoute><CreateActivity /></PrivateRoute>)} />
-        <Route path="/admin/form-inscripcion" element={(<PrivateRoute><AdminFormInscripcion /></PrivateRoute>)} />
+        <Route path="/admin/home" element={(<AdminHomePage />)} />
+        <Route path="/test-rating" element={(<TestRatingPage />)} />
+        <Route path="/notificaciones" element={(<NotificationsPage />)} />
+        <Route path="/actividades/crear" element={(<CreateActivity />)} />
+        <Route path="/admin/form-inscripcion" element={(<AdminFormInscripcion />)} />
 
         {/* login route */}
         <Route path="/login" element={<LoginPage />} />

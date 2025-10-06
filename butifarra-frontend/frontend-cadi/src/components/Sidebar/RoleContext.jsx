@@ -7,7 +7,7 @@ export const RoleProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUserRole = async () => {
-      const response = await Promise.resolve("Estudiante"); // mock
+      const response = await Promise.resolve("Colaborador"); // mock
       setRole(response);
     };
 
