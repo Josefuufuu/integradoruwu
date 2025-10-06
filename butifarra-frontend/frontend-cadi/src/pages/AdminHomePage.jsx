@@ -1,127 +1,195 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./AdminHomePage.css";
+import {
+  Activity,
+  BarChart3,
+  Bell,
+  ClipboardList,
+  Trophy,
+  Users,
+} from "lucide-react";
+import AppLayout from "../components/layout/AppLayout.jsx";
+
+const summaryCards = [
+  {
+    title: "Gestionar usuarios",
+    description: "Revisa solicitudes y actualiza perfiles",
+    to: "/admin/form-inscripcion",
+    icon: "👥",
+  },
+  {
+    title: "Gestionar actividades",
+    description: "Crea y edita la programación del CADI",
+    to: "/actividades/crear",
+    icon: "🎭",
+  },
+  {
+    title: "Ver reportes",
+    description: "Indicadores y reportes de bienestar",
+    to: "/admin/reports",
+    icon: "📊",
+  },
+];
+
+const metrics = [
+  {
+    title: "Asistencia hoy",
+    value: "324",
+    change: "+12%",
+    tone: "text-emerald-600",
+    Icon: Users,
+  },
+  {
+    title: "Inscripciones activas",
+    value: "1.245",
+    change: "+6%",
+    tone: "text-emerald-600",
+    Icon: ClipboardList,
+  },
+  {
+    title: "Ocupación",
+    value: "85%",
+    change: "-2%",
+    tone: "text-rose-500",
+    Icon: BarChart3,
+  },
+  {
+    title: "Incidencias",
+    value: "3",
+    change: "+1%",
+    tone: "text-rose-500",
+    Icon: Activity,
+  },
+];
+
+const quickActions = [
+  {
+    label: "Crear actividad",
+    description: "Nueva experiencia CADI",
+    Icon: ClipboardList,
+  },
+  {
+    label: "Publicar torneo",
+    description: "Organiza competencias",
+    Icon: Trophy,
+  },
+  {
+    label: "Enviar notificación",
+    description: "Comunica novedades",
+    Icon: Bell,
+  },
+];
+
+const recentActivities = [
+  { name: "Yoga matutino", attendees: "15 participantes", tone: "text-violet-600" },
+  { name: "Torneo fútbol 5", attendees: "8 participantes", tone: "text-emerald-600" },
+  { name: "Taller fotografía", attendees: "20 participantes", tone: "text-slate-500" },
+];
+
+const weeklyMetrics = [
+  { label: "Nuevos usuarios", value: "+23%", tone: "text-emerald-600" },
+  { label: "Actividades completadas", value: "+18%", tone: "text-emerald-600" },
+  { label: "Cancelaciones", value: "+5%", tone: "text-rose-500" },
+  { label: "Satisfacción promedio", value: "+2%", tone: "text-emerald-600" },
+];
 
 export default function AdminHomePage() {
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md flex flex-col">
-        <div className="px-6 py-4 border-b">
-          <h1 className="text-xl font-bold text-indigo-600">ICESI Bienestar</h1>
-          <p className="text-sm text-gray-500">Administrador</p>
-        </div>
-        <nav className="flex-1 px-4 py-6 space-y-2">
-          <SidebarLink icon={<Home size={18} />} text="Inicio" active />
-          <SidebarLink icon={<Users size={18} />} text="Gestión CADI" />
-          <SidebarLink icon={<Trophy size={18} />} text="Torneos" />
-          <SidebarLink icon={<ClipboardList size={18} />} text="Reportes" />
-          <SidebarLink icon={<Bell size={18} />} text="Notificaciones" />
-        </nav>
-        <div className="p-4 border-t">
-          <button className="flex items-center gap-2 text-red-500 hover:text-red-600">
-            <LogOut size={18} /> Cerrar sesión
-          </button>
-        </div>
-      </aside>
-
-      <div className="grid">
-        <Link to="/admin/form-inscripcion" className="card">
-          👥 Gestionar Usuarios
-        </Link>
-        <Link to="/actividades/crear" className="card">
-          🎭 Gestionar Actividades
-        </Link>
-        <Link to="/reportes" className="card">
-          📊 Ver Reportes
-        </Link>
-      </div>
-      {/* Main content */}
-      <main className="flex-1 p-6 space-y-6">
-        {/* Header */}
-        <header>
-          <h2 className="text-2xl font-bold text-gray-700">📊 Panel general</h2>
-          <p className="text-sm text-gray-500">
-            Vista general del sistema de Bienestar Universitario
+    <AppLayout>
+      <div className="space-y-8">
+        <section className="rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-500 p-6 text-white shadow-lg">
+          <p className="text-sm uppercase tracking-wide opacity-80">Panel general</p>
+          <h1 className="mt-2 text-3xl font-semibold">Bienvenido al centro administrativo</h1>
+          <p className="mt-3 max-w-2xl text-sm text-indigo-100">
+            Supervisa las actividades y el impacto del programa de bienestar universitario. Gestiona campañas,
+            actividades y reportes desde un mismo lugar.
           </p>
-        </header>
-
-        {/* Métricas */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card title="Asistencia hoy" value="324" change="+12%" color="text-green-600" icon={<Users size={20} />} />
-          <Card title="Inscripciones abiertas" value="1,245" change="+6%" color="text-green-600" icon={<ClipboardList size={20} />} />
-          <Card title="Ocupación" value="85%" change="-2%" color="text-red-600" icon={<BarChart3 size={20} />} />
-          <Card title="Incidencias" value="3" change="+1%" color="text-red-600" icon={<Activity size={20} />} />
         </section>
 
-        {/* Acciones rápidas */}
-        <section className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">⚡ Acciones rápidas</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <QuickAction text="Crear actividad" sub="Nueva actividad CADI" />
-            <QuickAction text="Publicar torneo" sub="Crear nuevo torneo" />
-            <QuickAction text="Enviar notificación" sub="Comunicado masivo" />
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {summaryCards.map((card) => (
+            <Link
+              key={card.title}
+              to={card.to}
+              className="group flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-violet-200 hover:shadow-md"
+            >
+              <span className="text-3xl">{card.icon}</span>
+              <div>
+                <h2 className="mt-4 text-lg font-semibold text-slate-800">{card.title}</h2>
+                <p className="mt-1 text-sm text-slate-500">{card.description}</p>
+              </div>
+              <span className="mt-4 text-sm font-medium text-violet-600 group-hover:text-violet-700">
+                Ir a la sección →
+              </span>
+            </Link>
+          ))}
+        </section>
+
+        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {metrics.map(({ title, value, change, tone, Icon }) => (
+            <div
+              key={title}
+              className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="text-sm text-slate-500">{title}</p>
+                  <p className="mt-2 text-2xl font-semibold text-slate-800">{value}</p>
+                </div>
+                <span className="rounded-full bg-violet-100 p-2 text-violet-600">
+                  <Icon className="size-5" />
+                </span>
+              </div>
+              <span className={`mt-4 text-xs font-semibold ${tone}`}>{change} respecto a la semana pasada</span>
+            </div>
+          ))}
+        </section>
+
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 className="text-lg font-semibold text-slate-800">⚡ Acciones rápidas</h3>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {quickActions.map(({ label, description, Icon }) => (
+              <button
+                key={label}
+                type="button"
+                className="flex flex-col items-start gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-violet-200 hover:bg-violet-50"
+              >
+                <span className="rounded-full bg-white p-2 text-violet-600 shadow-sm">
+                  <Icon className="size-5" />
+                </span>
+                <span className="text-base font-semibold text-slate-800">{label}</span>
+                <span className="text-sm text-slate-500">{description}</span>
+              </button>
+            ))}
           </div>
         </section>
 
-        {/* Actividades recientes + Métricas */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">📌 Actividades recientes</h3>
-            <ul className="space-y-2 text-sm">
-              <li className="flex justify-between"><span>Yoga matutino</span><span className="text-indigo-600">15 participantes</span></li>
-              <li className="flex justify-between"><span>Torneo Fútbol 5</span><span className="text-green-600">8 participantes</span></li>
-              <li className="flex justify-between"><span>Taller Fotografía</span><span className="text-gray-600">20 participantes</span></li>
+        <section className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-slate-800">📌 Actividades recientes</h3>
+            <ul className="mt-4 space-y-3 text-sm">
+              {recentActivities.map(({ name, attendees, tone }) => (
+                <li key={name} className="flex items-center justify-between">
+                  <span className="font-medium text-slate-700">{name}</span>
+                  <span className={`text-xs font-semibold ${tone}`}>{attendees}</span>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">📈 Métricas de la semana</h3>
-            <ul className="space-y-2 text-sm">
-              <li className="flex justify-between"><span>Nuevos usuarios</span><span className="text-green-600">+23%</span></li>
-              <li className="flex justify-between"><span>Actividades completadas</span><span className="text-green-600">+23%</span></li>
-              <li className="flex justify-between"><span>Cancelaciones</span><span className="text-red-600">+38%</span></li>
-              <li className="flex justify-between"><span>Satisfacción promedio</span><span className="text-green-600">+2%</span></li>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-slate-800">📈 Métricas de la semana</h3>
+            <ul className="mt-4 space-y-3 text-sm">
+              {weeklyMetrics.map(({ label, value, tone }) => (
+                <li key={label} className="flex items-center justify-between">
+                  <span className="font-medium text-slate-700">{label}</span>
+                  <span className={`text-xs font-semibold ${tone}`}>{value}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
-      </main>
-    </div>
-  );
-}
-
-/* --- Componentes auxiliares --- */
-
-function SidebarLink({ icon, text, active }) {
-  return (
-    <a
-      href="#"
-      className={`flex items-center gap-2 p-2 rounded-md font-medium ${
-        active ? "bg-indigo-50 text-indigo-600" : "text-gray-600 hover:bg-gray-100"
-      }`}
-    >
-      {icon} {text}
-    </a>
-  );
-}
-
-function Card({ title, value, change, color, icon }) {
-  return (
-    <div className="bg-white p-4 rounded-lg shadow flex items-center justify-between">
-      <div>
-        <p className="text-sm text-gray-500">{title}</p>
-        <h4 className="text-xl font-bold">{value}</h4>
-        <span className={`text-xs ${color}`}>{change}</span>
       </div>
-      <div className="text-indigo-600">{icon}</div>
-    </div>
-  );
-}
-
-function QuickAction({ text, sub }) {
-  return (
-    <button className="p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 text-left transition">
-      <p className="font-semibold text-gray-700">{text}</p>
-      <p className="text-sm text-gray-500">{sub}</p>
-    </button>
+    </AppLayout>
   );
 }

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import RatingAndComment from '../components/ui/RatingAndComment';
 import CommentList from '../components/ui/CommentList';
-import StudentSidebar from '../components/layout/StudentSidebar.jsx'; 
+import AppLayout from '../components/layout/AppLayout.jsx';
 
 export default function TestRatingPage() {
   const [comments, setComments] = useState([]);
@@ -38,29 +38,24 @@ export default function TestRatingPage() {
   };
 
   return (
-    // 2. ENVOLVEMOS TODO EN EL LAYOUT PRINCIPAL
-    <div className="app-layout">
-      <StudentSidebar />
-      <main className="main-content">
-        {/* Tu código original ahora vive dentro del <main> */}
-        <div className="page-container" style={{ margin: 0, maxWidth: '100%', padding: 0 }}>
-          <header className="page-header">
-            <h1>Actividad: Taller de Fotografía (Finalizada)</h1>
-            <p>Has asistido a esta actividad. ¡Por favor, déjanos tu opinión!</p>
-          </header>
-          <div className="form-card">
-            <RatingAndComment
-              onSubmit={handlePublishReview}
-              buttonText="Publicar Comentario"
-            />
-            <CommentList 
-              comments={comments} 
-              onEditSave={handleEditSave} 
-              onDelete={handleDeleteComment} 
-            />
-          </div>
+    <AppLayout>
+      <div className="page-container" style={{ margin: 0, maxWidth: '100%', padding: 0 }}>
+        <header className="page-header">
+          <h1>Actividad: Taller de Fotografía (Finalizada)</h1>
+          <p>Has asistido a esta actividad. ¡Por favor, déjanos tu opinión!</p>
+        </header>
+        <div className="form-card">
+          <RatingAndComment
+            onSubmit={handlePublishReview}
+            buttonText="Publicar Comentario"
+          />
+          <CommentList
+            comments={comments}
+            onEditSave={handleEditSave}
+            onDelete={handleDeleteComment}
+          />
         </div>
-      </main>
-    </div>
+      </div>
+    </AppLayout>
   );
 }
