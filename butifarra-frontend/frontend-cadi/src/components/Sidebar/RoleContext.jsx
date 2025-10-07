@@ -7,7 +7,8 @@ export const RoleProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUserRole = async () => {
-      const response = await Promise.resolve("Colaborador"); // mock
+      // TODO: reemplazar por la consulta real al backend una vez exista integración con Spring Security
+      const response = await Promise.resolve("Administrador");
       setRole(response);
     };
 

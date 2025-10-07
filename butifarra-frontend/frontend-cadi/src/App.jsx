@@ -5,9 +5,11 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useAuth } from "./context/AuthContext.jsx";
+import { useRole } from "./components/Sidebar/RoleContext.jsx";
 import HomeBeneficiary from "./pages/HomeBeneficiary.jsx";
 import AdminHomePage from "./pages/AdminHomePage.jsx";
 import CreateActivity from "./pages/CreateActivity.jsx";
+import CreateRolePage from "./pages/CreateRolePage.jsx";
 import TestRatingPage from "./pages/TestRatingPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import AdminFormInscripcion from "./pages/AdminFormInscripcion";
@@ -55,6 +57,30 @@ PrivateRoute.propTypes = {
 };
 
 
+export function AdminRoute({ children }) {
+  const role = useRole();
+  const location = useLocation();
+
+  if (!role) {
+    return (
+      <div className="flex h-screen items-center justify-center text-gray-600">
+        Verificando permisos...
+      </div>
+    );
+  }
+
+  if (role !== "Administrador") {
+    return <Navigate to="/inicio" replace state={{ from: location }} />;
+  }
+
+  return children;
+}
+
+AdminRoute.propTypes = {
+  children: PropTypes.node,
+};
+
+
 
 export default function App() {
   return (
@@ -77,6 +103,16 @@ export default function App() {
         <Route path="/notificaciones" element={(<NotificationsPage />)} />
         <Route path="/actividades/crear" element={(<CreateActivity />)} />
         <Route path="/admin/form-inscripcion" element={(<AdminFormInscripcion />)} />
+        <Route
+          path="/admin/roles/crear"
+          element={(
+            <PrivateRoute>
+              <AdminRoute>
+                <CreateRolePage />
+              </AdminRoute>
+            </PrivateRoute>
+          )}
+        />
 
         {/* login route */}
         <Route path="/login" element={<LoginPage />} />

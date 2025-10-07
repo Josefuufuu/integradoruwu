@@ -9,6 +9,7 @@ import notificationIcon from "../../assets/icons/notification-icon.png";
 import reportIcon from "../../assets/icons/report-icon.png";
 import trophyIcon from "../../assets/icons/trophy-icon.png";
 import brainIcon from "../../assets/icons/brain-icon.png";
+import profileIcon from "../../assets/icons/profile-icon.png";
 
 const routes = [
   {
@@ -55,6 +56,13 @@ const routes = [
     icon: reportIcon,
     title: "Reportes",
     roles: ["Administrador", "Colaborador"],
+  },
+  {
+    key: "roles",
+    path: "/admin/roles/crear",
+    icon: profileIcon,
+    title: "Crear roles",
+    roles: ["Administrador"],
   },
   {
     key: "notificaciones",
